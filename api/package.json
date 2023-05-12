@@ -1,0 +1,30 @@
+{
+  "name": "mytwitter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arvindinh/mytwitter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arvindinh/mytwitter/issues"
+  },
+  "homepage": "https://github.com/arvindinh/mytwitter#readme",
+  "dependencies": {
+    "apollo-server-express": "^3.12.0",
+    "bcrypt": "^5.1.0",
+    "express": "^4.18.2",
+    "graphql": "^16.6.0",
+    "mysql2": "^3.3.0",
+    "nodemon": "^2.0.22",
+    "sequelize": "^6.31.1",
+    "uuid": "^9.0.0"
+  }
+}
