@@ -91,7 +91,8 @@ const updateName = (req, res) => {
     return res.status(200).json({ message: 'User column "name" updated successfully' });
 };
 
-const updateFollow = (req, res) => {
+//REMEMBER: update relationships as well
+const addFollow = (req, res) => {
     const {id1, id2} = req.body;
     const sqlUpdate1 = 'UPDATE users SET num_followers = num_followers + 1 WHERE id = ?';
     //two updates: increment num of followers on person 1 and num followed on person 2
@@ -111,6 +112,8 @@ const updateFollow = (req, res) => {
     return res.status(200).json({ message: 'User column "num_followers, num_followed" updated successfully' });
 }
 
+
+
 module.exports = {
     createUser,
     updateBio,
@@ -118,5 +121,5 @@ module.exports = {
     updateBGImage,
     updatePassword,
     updateName,
-    updateFollow
+    addFollow
 };

@@ -70,7 +70,10 @@ app.post('/api/insert', (req,res) => {
 })
 */
 const userRoutes = require('./routes/userRoutes');
-app.use('/api/users', userRoutes);
+const tweetRoutes = require('./routes/tweetRoutes');
+
+app.use('/api/user', userRoutes);
+app.use('/api/tweet', tweetRoutes);
 // Start the server
 app.listen(3001, () => {
   console.log(`Server is running on port 3001`);
