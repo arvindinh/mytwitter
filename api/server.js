@@ -4,24 +4,33 @@ const path = require('path');
 //const { ApolloServer } = require('apollo-server-express');
 //const { resolvers, typeDefs } = require('./src/graphql/schema');
 const cors = require('cors');
-const mysql = require('mysql2');
+const cookieParser = require("cookie-parser");
+const jwt = require('jsonwebtoken');
+
 
 const app = express();
 
 // Create a MySQL connection pool
-const pool = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: 'mypassword',
-  database: 'twitterDB',
-});
+
+const authMiddleware = (req, res, next) => {
+  const token  = req.headers.authorization;
+  
+}
+
+
 
 // Enable CORS
-app.use(cors());
+
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true
+}));
 // Serve the React app from the "build" directory
 app.use(express.static(path.join(__dirname, 'client', 'build')));
 //app.use(express.json());
-app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json())
 /*
 // Set up the Apollo Server with GraphQL schema and resolvers
 const server = new ApolloServer({
@@ -71,9 +80,11 @@ app.post('/api/insert', (req,res) => {
 */
 const userRoutes = require('./routes/userRoutes');
 const tweetRoutes = require('./routes/tweetRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 app.use('/api/user', userRoutes);
 app.use('/api/tweet', tweetRoutes);
+app.use('/api/auth', authRoutes);
 // Start the server
 app.listen(3001, () => {
   console.log(`Server is running on port 3001`);

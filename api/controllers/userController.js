@@ -1,5 +1,6 @@
 //defining methods that use the db involving user information
 const mysql = require('mysql2');
+
 const db = mysql.createPool({
     host: 'localhost',
     user: 'root',
@@ -10,20 +11,6 @@ const db = mysql.createPool({
 const bcrypt = require('bcrypt');
 
 //methods for creating/updating values in db
-const createUser = (req, res) => {
-    const { username, email, password, created_at, name } = req.body;
-    const hashedPass = bcrypt.hashSync(password, 10);
-    const sqlInsert = 'INSERT INTO users (username, email, password_digest, created_at, name, num_followers, num_followed) VALUES (?,?,?,?,?,?,?)';
-    const values = [username, email, hashedPass, created_at, name, 0, 0];
-
-    db.query(sqlInsert, values, (err, result) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).json({error: 'Internal server error'});
-        }
-        return res.status(200).json({message: 'User created successfully'});
-    });
-};
 
 const updateBio = (req, res) => {
     const {bio, id} = req.body;
@@ -52,10 +39,13 @@ const updateProfileImage = (req, res) => {
 };
 
 const updateBGImage = (req, res) => {
-    const {pic, id} = req.body;
+    if (!req.session.loggedIn) {
+        return res.status(401).json({error: "Login or signup"});
+    }
+    const pic = req.body.pic;
     const sqlUpdate = 'UPDATE users SET bg_image = ? WHERE id = ?';
     
-    db.query(sqlUpdate, [pic, id], (err, result) => {
+    db.query(sqlUpdate, [pic, req.session.userID], (err, result) => {
         if (err) {
             console.error(err);
             return res.status(500).json({ error: 'Internal server error' });
@@ -114,8 +104,8 @@ const addFollow = (req, res) => {
 
 
 
+
 module.exports = {
-    createUser,
     updateBio,
     updateProfileImage,
     updateBGImage,

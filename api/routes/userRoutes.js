@@ -2,15 +2,16 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 
-//post routes
-router.post('/', userController.createUser);
+const isLoggedIn = (req, res, next) => {
+  next();
+};
 
 //put routes
-router.put('/:id/bio', userController.updateBio);
-router.put('/:id/profileimage', userController.updateProfileImage);
-router.put('/:id/bgimage', userController.updateBGImage);
-router.put('/:id/password', userController.updatePassword);
-router.put('/:id/name', userController.updateName);
-router.put('/:id/follow', userController.addFollow);
+router.put('/bio', isLoggedIn, userController.updateBio);
+router.put('/profileimage', isLoggedIn, userController.updateProfileImage);
+router.put('/bgimage', isLoggedIn, userController.updateBGImage);
+router.put('/password', isLoggedIn, userController.updatePassword);
+router.put('/name', isLoggedIn, userController.updateName);
+router.put('/follow', isLoggedIn, userController.addFollow);
 
 module.exports = router;

@@ -1,21 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
-import React, {useState, useEffect} from "react";
-import Axios from 'axios'
+import Sidebar from './components/Sidebar/Sidebar';
+import Feed from './components/Feed/Feed';
+import Widgets from './components/Widgets/Widgets';
+
+
 
 function App() {
-  const [tweet, setTweet] = useState("");
-
-  const handleTweet = () => {
-    Axios.post("http://localhost:3001/api/insert", {text: tweet});
-  };
-
   return (
-    <div className="App">
-      <h1>TWITTER</h1>
-      <textarea onChange = {(e) => {setTweet(e.target.value);}}> </textarea>
-      <button onClick={handleTweet}>Tweet</button>
-    </div>
+
+      <div className="app">
+        <Sidebar/>
+        <Feed/>
+        <Widgets/>
+      </div>
+
   );
 }
 

@@ -1,0 +1,32 @@
+.outerwidget {
+    flex: 0.3;
+    margin-top: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.widgets {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7fafc;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.widgets > * + * {
+    margin-left: 0.5rem;
+}
+
+.widgets__searchIcon {
+    height: 1.25rem !important;
+    width: 1.25rem !important;
+    color: #cbd5e0;
+}
+
+.widgets__input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
