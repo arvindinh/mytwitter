@@ -24,3 +24,32 @@
     height: 50px !important;
     margin-top: 20px !important;
 }
+
+.sidebar__fatbird {
+    height: 4rem;
+    width: 4rem;
+    object-fit: cover;
+}
+
+.sidebar__fatbird:hover {
+    animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+  

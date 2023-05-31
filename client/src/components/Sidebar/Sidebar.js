@@ -10,11 +10,12 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import EmailIcon from '@mui/icons-material/Email';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { Button } from '@mui/material';
+import FatBird from '../../assets/images/fatTwitter.png'
 
 function Sidebar() {
     return (
         <div className="sidebar">
-            <TwitterIcon className="sidebar__twitterIcon"/>
+            <img src={FatBird} className="sidebar__fatbird"/>
             <SidebarOption text="Home" Icon={HomeIcon}/>
             <SidebarOption text="Explore" Icon={SearchIcon}/>
             <SidebarOption text="Notifications" Icon={NotificationsIcon}/>
